@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Taxrirlash {% endblock title %}
+
+{% block content %}
+    <h2 class="text-center"> Joriy yangilikni o'zgartirish</h2>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-info ml-2">Taxrirlash</button>
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Sport yangiliklari {% endblock title %}
+
+{% block content %}
+  <section id="contentSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="left_content">
+
+
+             <h1>  Foydalanuvchi ismi: {{ user.ism }} </h1>
+             <h1>  Foydalanuvchi familiyasi: {{ user.familiya }} </h1>
+             <h1>  Foydalanuvchi email: {{ user.email }} </h1>
+             <h1>  Foydalanuvchi manzili: {{ user.manzil }} </h1>
+
+      </div>
+      </div>
+
+
+
+    </div>
+  </section>
+{% endblock content %}

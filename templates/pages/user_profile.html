@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+
+{% block title %} FOydalanuvchi profile {% endblock title %}
+{% block content %}
+
+    <h3>Xush kelbsiz {{ user.username }}</h3>
+    <h2>Siz haqingizdagi ma'lumotlar</h2>
+    <label>Username: </label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"><br>
+    <label>Emailingiz: </label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"><br>
+    <label>Ismingiz: </label> <input value="{{ user.first_name }}" readonly placeholder="kiritilmagan"><br>
+    <label>Familiyangiz: </label> <input value="{{ user.last_name }}" readonly placeholder="kiritilmagan">
+
+    <h3>
+        <a href="{% url 'password_change' %}" style="color:red"> Parolingizni alishtiring </a>
+    </h3>
+
+{% endblock content %}
