@@ -2,15 +2,17 @@
 {% load static %}
 
 
-{% block title %} FOydalanuvchi profile {% endblock title %}
+{% block title %} Foydalanuvchi profile {% endblock title %}
 {% block content %}
 
     <h3>Xush kelbsiz {{ user.username }}</h3>
     <h2>Siz haqingizdagi ma'lumotlar</h2>
+    <img src="{{ user.photo.url }}" alt="user image"><br>
     <label>Username: </label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"><br>
     <label>Emailingiz: </label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"><br>
     <label>Ismingiz: </label> <input value="{{ user.first_name }}" readonly placeholder="kiritilmagan"><br>
-    <label>Familiyangiz: </label> <input value="{{ user.last_name }}" readonly placeholder="kiritilmagan">
+    <label>Familiyangiz: </label> <input value="{{ user.last_name }}" readonly placeholder="kiritilmagan"><br>
+    <label>ty: </label> <input value="{{ user.date_of_birth }}" readonly placeholder="kiritilmagan">
 
     <h3>
         <a href="{% url 'password_change' %}" style="color:red"> Parolingizni alishtiring </a>
