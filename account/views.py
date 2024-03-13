@@ -1,10 +1,11 @@
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.views import View
 
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
@@ -138,3 +139,16 @@ class EditUserView(LoginRequiredMixin,View):
             user_form.save()
             profile_form.save()
             return redirect('user_profile')
+
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_page_view(request):
+    users = User.objects.filter(is_superuser=True)
+
+    context = {
+        'admin_users' : users
+    }
+    return render(request, template_name='pages/admin_page.html', context=context)
+

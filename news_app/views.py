@@ -1,8 +1,11 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 
+from news_project.custom_permissions import OnlyLoggedSuperUser
 from .models import News, Category
 from .forms import ContactForm
 
@@ -16,6 +19,7 @@ def news_list(request):
     }
 
     return render(request,'news/news_list.html',context)
+
 
 def news_detail_view(request,news):
     news = get_object_or_404(News, slug = news, status = News.Status.Published)
@@ -83,7 +87,7 @@ def sportnewsview(request):
     context = {
         'news' : sport_news
     }
-    return render(request, 'news/sportnewsview.html', context)
+    return render(request, 'news/sport.html', context)
 def localnewsview(request):
     # news = News.objects.filter(category = Category.name.Sport)
     local_news = News.objects.filter(category__name='Mahalliy')
@@ -117,6 +121,29 @@ def xorijnewsview(request):
     return render(request, 'news/xorij.html', context)
 
 
+def jamiyat_view(request):
+    jamiyat_news = News.objects.filter(category__name = 'Jamiyat')
+
+    context = {
+        "news":jamiyat_news
+    }
+
+    return render(request, 'news/jamiyat.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class ContactPageView(TemplateView):
     template_name = 'news/contact.html'
 
@@ -138,18 +165,19 @@ class ContactPageView(TemplateView):
         return render(request, 'news/contact.html', context)
 
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(OnlyLoggedSuperUser, UpdateView):
     model = News
     fields = ('title','body','category','status')
     template_name = 'crud/update.html'
 
-class NewsCreateView(CreateView):
+class NewsCreateView(OnlyLoggedSuperUser,  CreateView):
     model = News
     fields = ('title','slug','image','body','category','status')
     template_name = 'crud/create.html'
 
 
-class NewsDeleteView(DeleteView):
+
+class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
     model = News
     template_name = 'crud/detele.html'
     success_url = reverse_lazy('home_page')
