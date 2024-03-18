@@ -10,8 +10,8 @@
         <div class="left_content">
           <div class="contact_area">
 
-             <center><h1>{{ news.title }}</h1>
-           <img src="{{ news.image.url }}" alt="" width="80%" ></center>
+             <h1>{{ news.title }}</h1>
+           <img src="{{ news.image.url }}" alt="" width="80%" >
             <p>{{ news.body | linebreaks}}</p>
 
         </div>
@@ -27,6 +27,48 @@
 
 
                 {% endif %}
+
+<h3>Jami izohlar soni {{ comment_count }} ta</h3>
+{% for comment in comments %}
+
+    <div class="comments" style="padding: 10px">
+    <p class="font-weight-bold">
+        {{ comment.user }}
+    <span class="text-muted font-weight-normal">
+        {{ comment.created_time }}
+    </span>
+    </p>
+    {{ comment.body | linebreaks }}
+    </div>
+{% endfor %}
+
+
+<!--     </form>-->
+    {% if user.is_authenticated %}
+    <div class="col-md-8 card mb-4 mt-3">
+     <div class="card-body">
+         <h3>Izoh qoldirish</h3>
+         <form method="POST" style="margin-top: 1.3em">{% csrf_token %}
+             {{ comment_form.as_p }}
+             <button type="submit" class="btn btn-primary btn-lg">
+                 Yuborish
+             </button>
+         </form>
+     </div>
+    </div>
+    {% else %}
+    <div class="card-body">
+    <p class="text-danger">Faqatgina ro'yhatdan o'tgan foydalanuvchilar izoh qoldirishi mumkin</p>
+    <p>Izoh qoldirish uchun
+        <a href="{% url 'user_register' %}" style="color: red">ro'yhatdan o'ting </a>
+        yoki <a href="{% url 'login' %}" style="color: blue">Saytga kiring</a>
+    </p>
+    </div>
+    {% endif %}
+
+
+
+
 
       </div>
       </div>

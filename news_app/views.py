@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, ListView, UpdateView, DeleteView,
 
 from news_project.custom_permissions import OnlyLoggedSuperUser
 from .models import News, Category
-from .forms import ContactForm
+from .forms import ContactForm, CommentForm
 
 
 def news_list(request):
@@ -21,11 +21,35 @@ def news_list(request):
     return render(request,'news/news_list.html',context)
 
 
+# @login_required()
 def news_detail_view(request,news):
     news = get_object_or_404(News, slug = news, status = News.Status.Published)
+    comments = news.comments.filter(active=True)
+    new_comment = None
+    comment_count = len(comments)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+
+            new_comment = comment_form.save(commit=False)
+            new_comment.news = news
+            new_comment.user = request.user
+            new_comment.save()
+            comment_form = CommentForm()
+
+
+
+    else:
+        comment_form = CommentForm()
+
 
     context = {
-        "news" : news
+        "news" : news,
+        'comments' : comments,
+        'new_comment': new_comment,
+        'comment_form' : comment_form,
+        'comment_count' : comment_count,
     }
 
     return render(request,"news/news_detail.html",context)
@@ -129,19 +153,6 @@ def jamiyat_view(request):
     }
 
     return render(request, 'news/jamiyat.html', context)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class ContactPageView(TemplateView):
