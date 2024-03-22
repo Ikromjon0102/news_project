@@ -1,7 +1,7 @@
 
 {% extends 'news/base.html' %}
 {% load static %}
-
+{% load hitcount_tags %}
 
 
 {% block content %}
@@ -28,8 +28,13 @@
               {% for xabar in news_rec %}
               <li>
                 <div class="media"> <a href="{{ xabar.get_absolute_url }}" class="media-left"> <img alt="" src="{{ xabar.image.url }}"> </a>
-                  <div class="media-body"> <a href="{{ xabar.get_absolute_url }}" class="catg_title"> {{ xabar.title }} </a> </div>
-                </div>
+                  <div class="media-body"> <a href="{{ xabar.get_absolute_url }}" class="catg_title"> {{ xabar.title }} </a>
+
+              <p>Ko'rilganlar soni: <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for xabar %}</p>
+
+                  </div>
+               </div>
+
               </li>
               {% endfor %}
             </ul>

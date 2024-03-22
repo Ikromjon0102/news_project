@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Sport yangiliklari {% endblock title %}
 
@@ -11,6 +12,12 @@
           <div class="contact_area">
 
              <h1>{{ news.title }}</h1>
+
+               <h5>
+                   {{ news.publish_time }} | <i class="fa fa-eye" aria-hidden="true"></i>
+                   {% get_hit_count for news %} | <i class="fa fa-comments"></i> {{ comment_count }}
+               </h5>
+
            <img src="{{ news.image.url }}" alt="" width="80%" >
             <p>{{ news.body | linebreaks}}</p>
 

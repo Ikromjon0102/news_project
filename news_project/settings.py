@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news_app',
     "foydalanuvchilar",
+    'hitcount',
 ]
 
 MIDDLEWARE = [
