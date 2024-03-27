@@ -39,6 +39,9 @@ def user_login(request):
     return render(request, 'registration/login.html', {"form": form})
 
 
+
+
+
 @login_required
 def profile_view(request):
     user = request.user
@@ -81,6 +84,7 @@ def user_register(request):
 
 
 class SignUpView2(View):
+
     def get(self, request):
         user_form = UserRegistrationForm()
         # print(user_form)
@@ -104,6 +108,10 @@ class SignUpView2(View):
                 "new_user": new_user
             }
             return render(request, 'account/register_done.html', context)
+
+
+
+
 @login_required
 def edit_user(request):
     if request.method == 'POST':

@@ -199,6 +199,8 @@ class NewsUpdateView(OnlyLoggedSuperUser, UpdateView):
     fields = ('title','body','category','status')
     template_name = 'crud/update.html'
 
+
+
 class NewsCreateView(OnlyLoggedSuperUser,  CreateView):
     model = News
     fields = ('title','title_uz','title_en','title_ru','slug','body','body_uz','body_en','body_ru','image','category','status')

@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news_app',
-    "foydalanuvchilar",
     'hitcount',
 ]
 
@@ -123,6 +122,11 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+
+
+LOCALE_PATHS = BASE_DIR, 'locale'
+# LOCALE_PATHS = (BASE_DIR / 'locale/', )
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']

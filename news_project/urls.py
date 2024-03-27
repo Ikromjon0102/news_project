@@ -7,7 +7,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('foydalanuvchilar.urls'),),
+
 ] + i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
 

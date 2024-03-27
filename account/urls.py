@@ -7,7 +7,9 @@ from .views import profile_view, user_register, SignUpView2, EditUserView, edit_
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
+
     path('logout/', LogoutView.as_view(), name="logout"),
+
     path('password-change/', PasswordChangeView.as_view(), name="password_change"),
     path('password-change-done/', PasswordChangeDoneView.as_view(), name="password_change_done"),
 
@@ -20,6 +22,7 @@ urlpatterns = [
 
     # path('signup/', user_register, name='user_register'),
     path('signup/', SignUpView2.as_view(), name='user_register'),
+
     path('admin-page/', admin_page_view, name='admin_page'),
 
     # path('profile/edit/', edit_user, name='edit_user_information' ),

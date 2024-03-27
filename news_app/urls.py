@@ -7,14 +7,14 @@ urlpatterns = [
     path('', HomePageView.as_view(), name="home_page"),
     # path('', newstopfive, name="home_page"),
     path('news/', news_list, name="all_news_list"),
+
     path('news/create/', NewsCreateView.as_view(), name="create_view"),
-    path('news/<slug:news>/', news_detail_view, name="news_detail"),
     path('news/<slug>/update/', NewsUpdateView.as_view(), name="update_view"),
     path('news/<slug>/delete/', NewsDeleteView.as_view(), name="delete_view"),
 
     path('contact/', ContactPageView.as_view(), name="contact_page"),
 
-
+    path('news/<slug:news>/', news_detail_view, name="news_detail"),
     path('about/', aboutview, name="about_page"),
 
     path('sport/', sportnewsview, name="sportnews_page"),

@@ -8,9 +8,18 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.PasswordInput()
 
+
+
+
+
+
+
+
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label="Parol",
                                widget=forms.PasswordInput)
+
     password_2 = forms.CharField(label="Parolni takrorlang",
                                  widget=forms.PasswordInput)
 
@@ -23,6 +32,13 @@ class UserRegistrationForm(forms.ModelForm):
         if data['password'] != data['password2']:
             raise forms.ValidationError("Ikkala parolingiz ham bir-biriga teng bo'lishi kerak!")
         return data['password2']
+
+
+
+
+
+
+
 
 
 class UserEditForm(forms.ModelForm):

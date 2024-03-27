@@ -8,6 +8,7 @@ django = "==4.0"
 twilio = "*"
 pillow = "*"
 django-modeltranslation = "*"
+python-gettext = "*"
 
 [dev-packages]
 

@@ -5,12 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>
+{% block title %}
 
-    <title>
-      Yangiliklar
-    </title>
-
-
+{% endblock title %}
+</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +48,7 @@
             {% else %}
             <p><a href="{% url 'login' %}" style="color:red">Saytga kirish</a></p>
             {% endif  %}
-            <p>{% now "jS F Y H:i" %}</p>
+              <p>{% now "jS F Y H:i" %}</p>
 
           </div>
         </div>
@@ -71,12 +70,12 @@
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="{% url 'home_page' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
 
-          <li><a href="{% url 'local_page' %}">Mahalliy</a></li>
-          <li><a href="{% url 'xorij_page' %}">Xorij</a></li>
-          <li><a href="{% url 'texno_page' %}">Texnologiya</a></li>
-          <li><a href="{% url 'siyosiy_page' %}">Siyosat</a></li>
-          <li><a href="{% url 'sportnews_page' %}">Sport</a></li>
-          <li><a href="{% url 'jamiyat_page' %}">Jamiyat</a></li>
+          <li><a href="{% url 'local_page' %}"> {% blocktrans %} Mahalliy {% endblocktrans %}</a></li>
+          <li><a href="{% url 'xorij_page' %}">{% blocktrans %} Xorij {% endblocktrans %}</a></li>
+          <li><a href="{% url 'texno_page' %}">{% blocktrans %} Texnologiya {% endblocktrans %}</a></li>
+          <li><a href="{% url 'siyosiy_page' %}">{% blocktrans %} Siyosat {% endblocktrans %}</a></li>
+          <li><a href="{% url 'sportnews_page' %}">{% blocktrans %} Sport {% endblocktrans %}</a></li>
+          <li><a href="{% url 'jamiyat_page' %}">{% blocktrans %} Jamiyat {% endblocktrans %}</a></li>
 
 
           <li><a href="{% url 'create_view' %}">Create</a></li>
