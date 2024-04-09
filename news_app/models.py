@@ -83,9 +83,11 @@ class Contact(models.Model):
 
 
 class Comment(models.Model):
+
     news = models.ForeignKey(News,
                              on_delete=models.CASCADE,
                              related_name='comments')
+
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
                              related_name='comments')

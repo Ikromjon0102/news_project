@@ -1,5 +1,8 @@
 from pathlib import Path
 
+
+from decouple import config
+
 import django.core.mail.backends.console
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -10,12 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4gjrzqfj9csxbq^+!!3mh@65(6y+4dx(l)1wfi%i8$swdg_)ut'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['profitdev.uz', 'www.profitdev.uz', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -31,10 +34,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news_app',
     'hitcount',
+    'whitenoise',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     "django.middleware.locale.LocaleMiddleware",
@@ -129,15 +134,25 @@ LOCALE_PATHS = BASE_DIR, 'locale'
 # LOCALE_PATHS = (BASE_DIR / 'locale/', )
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static/']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = '/home/djangomo/profitdev.uz/django/staticfiles'
+STATICFILES_DIRS = ('/home/djangomo/profitdev.uz/django/static',)
+
+
+#local
+# STATICFILES_DIRS = [BASE_DIR / 'static/']
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_ROOT = '/home/djangomo/profitdev.uz/django/media'
+
+
+#local
+# MEDIA_ROOT = BASE_DIR / 'media/'
 
 
 # Default primary key field type
@@ -149,3 +164,5 @@ LOGIN_REDIRECT_URL = 'home_page'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_URL = 'login'
+
+STATICFILES_STOREG = "whitenoise.storage.CompressedManifestStaticFilesStorage"

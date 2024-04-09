@@ -23,6 +23,7 @@ urlpatterns = [
     path('texnologiya/', texnonewsview, name="texno_page"),
     path('xorij/', xorijnewsview, name="xorij_page"),
     path('jamiyat/', jamiyat_view, name = 'jamiyat_page'),
+
     path('searchresult/', SearchResultsList.as_view(), name='search_results'),
 ]
 

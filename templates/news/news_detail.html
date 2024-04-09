@@ -36,18 +36,19 @@
                 {% endif %}
 
 <h3>Jami izohlar soni {{ comment_count }} ta</h3>
-{% for comment in comments %}
 
-    <div class="comments" style="padding: 10px">
-    <p class="font-weight-bold">
-        {{ comment.user }}
-    <span class="text-muted font-weight-normal">
-        {{ comment.created_time }}
-    </span>
-    </p>
-    {{ comment.body | linebreaks }}
-    </div>
-{% endfor %}
+        {% for comment in comments %}
+
+            <div class="comments" style="padding: 10px">
+            <p class="font-weight-bold">
+                {{ comment.user }}
+            <span class="text-muted font-weight-normal">
+                {{ comment.created_time }}
+            </span>
+            </p>
+            {{ comment.body | linebreaks }}
+            </div>
+        {% endfor %}
 
 
 <!--     </form>-->
@@ -82,14 +83,16 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
           <div class="single_sidebar">
-            <h2><span>Popular Post</span></h2>
+            <h2><span>Ommobop</span></h2>
             <ul class="spost_nav">
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'images//post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                </div>
-              </li>
-              <li>
+              {% for news in category_news %}
+                <li>
+                    <div class="media wow fadeInDown"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
+                      <div class="media-body"> <a href="single_page.html" class="catg_title"> {{ news.title }} </a> </div>
+                    </div>
+                </li>
+              {% endfor %}
+                <li>
                 <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'images//post_img2.jpg' %}"> </a>
                   <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
                 </div>

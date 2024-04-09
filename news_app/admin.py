@@ -30,7 +30,7 @@ class Category(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'news', 'body', 'created_time', 'active']
     list_filter = ['active', 'created_time']
-    search_fields = ['body', 'user']
+    # search_fields = ['body', 'user']
     actions = ['disable_comment', 'enable_comment']
 
     def disable_comment(self, request, queryset):
@@ -40,3 +40,5 @@ class CommentAdmin(admin.ModelAdmin):
     def enable_comment(self, request, queryset):
         queryset.update(active = True)
 
+
+# admin.site.register(Comment)

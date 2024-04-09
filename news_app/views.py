@@ -28,6 +28,7 @@ def news_list(request):
 # @login_required()
 def news_detail_view(request,news):
     news = get_object_or_404(News, slug = news, status = News.Status.Published)
+    category_news = News.published.filter(category__name = news.category).order_by('-publish_time')[:4]
 
     context = {}
 
@@ -68,6 +69,7 @@ def news_detail_view(request,news):
         'new_comment': new_comment,
         'comment_form' : comment_form,
         'comment_count' : comment_count,
+        'category_news' : category_news,
     }
 
     return render(request,"news/news_detail.html",context)
