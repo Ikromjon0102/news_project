@@ -134,8 +134,8 @@ LOCALE_PATHS = BASE_DIR, 'locale'
 # LOCALE_PATHS = (BASE_DIR / 'locale/', )
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/djangomo/profitdev.uz/django/staticfiles'
-STATICFILES_DIRS = ('/home/djangomo/profitdev.uz/django/static',)
+STATIC_ROOT = '/home/profitde/profitdev.uz/django/staticfiles'
+STATICFILES_DIRS = ('/home/profitde/profitdev.uz/django/static',)
 
 
 #local
@@ -148,7 +148,7 @@ STATICFILES_FINDERS = [
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/djangomo/profitdev.uz/django/media'
+MEDIA_ROOT = '/home/profitde/profitdev.uz/django/media'
 
 
 #local
